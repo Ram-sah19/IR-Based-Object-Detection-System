@@ -16,16 +16,11 @@ The ultrasonic sensor emits sound waves and measures the time taken for them to 
 
 | Name | Reg No |
 |------|--------|
-| **Rambilas Sah** | 61782323102131 |
-| Jerome John Itty | 61782323102057 |
-| Parash Daulyal | 61782323102115 |
-| Rahul K | 61782323102127 |
+| **Rambilas Sah** |
+| Jerome John Itty |
+| Parash Daulyal | 
+| Rahul K |
 
-**Course:** Fundamentals of Robotics (U23MC1008)
-**Department:** Computer Science and Engineering
-**Institution:** Sona College of Technology, Salem
-
----
 
 ## 🛠️ Components Required
 
@@ -77,52 +72,6 @@ Where `Duration` is the time (in microseconds) between the Trig pulse and Echo r
 | GND | GND |
 | Trig | Digital Pin 9 |
 | Echo | Digital Pin 10 |
-
----
-
-## 💻 Arduino Code
-
-```cpp
-// Arduino-Based Object Distance Detection
-// Ultrasonic Sensor HC-SR04
-
-const int trigPin = 9;
-const int echoPin = 10;
-
-long duration;
-float distance;
-
-void setup() {
-  pinMode(trigPin, OUTPUT);
-  pinMode(echoPin, INPUT);
-  Serial.begin(9600);
-  Serial.println("Object Distance Detection Started...");
-}
-
-void loop() {
-  // Clear the trigPin
-  digitalWrite(trigPin, LOW);
-  delayMicroseconds(2);
-
-  // Send 10µs HIGH pulse to trigPin
-  digitalWrite(trigPin, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigPin, LOW);
-
-  // Read the echoPin — returns sound wave travel time in µs
-  duration = pulseIn(echoPin, HIGH);
-
-  // Calculate distance in cm
-  distance = (duration * 0.034) / 2;
-
-  // Display on Serial Monitor
-  Serial.print("Distance: ");
-  Serial.print(distance);
-  Serial.println(" cm");
-
-  delay(500);
-}
-```
 
 ---
 
