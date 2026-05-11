@@ -1,33 +1,34 @@
-# 📡 Arduino-Based Object Distance Detection Using Ultrasonic Sensor
+# 🔴 IR-Based Object Detection System using Arduino Uno
 
-> A real-time embedded system that measures the distance of objects using ultrasonic waves and an Arduino Uno microcontroller — built as part of the Fundamentals of Robotics course (U23MC1008).
+> A real-time embedded system that detects the presence of objects using infrared sensors and an Arduino Uno — triggering an LED output on detection.
 
 ---
 
 ## 📌 Overview
 
-Object distance detection is a core concept in robotics and automation. This project implements a simple, low-cost, and efficient distance measurement system using an **Arduino Uno** and an **HC-SR04 Ultrasonic Sensor**.
+This project implements a simple and effective object detection system using an **IR (Infrared) sensor** and an **Arduino Uno**. The IR sensor emits infrared light and detects when an object (such as a hand or any physical obstacle) reflects that light back to the receiver. When an object is detected, the Arduino triggers an **LED indicator** as a visual output signal.
 
-The ultrasonic sensor emits sound waves and measures the time taken for them to reflect back from an object. The Arduino processes this time delay to compute the exact distance, which is then displayed live on the Serial Monitor via Arduino IDE.
+This project demonstrates core embedded systems concepts including sensor interfacing, real-time signal reading, threshold-based detection, and output control — directly applicable to obstacle avoidance and automation systems.
 
 ---
 
-## 👥 Team
+## 👤 Developer
 
-| Name | Reg No |
-|------|--------|
-| **Rambilas Sah** |
-| Jerome John Itty |
-| Parash Daulyal | 
-| Rahul K |
+**Rambilas Sah**
+B.E. Computer Science & Engineering
+Sona College of Technology, Salem
+GitHub: [Ram-Sah19](https://github.com/Ram-sah19)
 
+---
 
 ## 🛠️ Components Required
 
 | Component | Quantity |
 |-----------|----------|
 | Arduino Uno | 1 |
-| Ultrasonic Sensor (HC-SR04) | 1 |
+| IR Sensor Module | 1 |
+| LED | 1 |
+| Resistor (220Ω) | 1 |
 | Jumper Wires | As required |
 | USB Cable | 1 |
 | Computer with Arduino IDE | 1 |
@@ -37,67 +38,68 @@ The ultrasonic sensor emits sound waves and measures the time taken for them to 
 ## ⚙️ How It Works
 
 ```
-Arduino Uno triggers the Trig pin
+IR Sensor emits infrared light continuously
         ↓
-HC-SR04 emits ultrasonic sound waves
+Object (hand / obstacle) enters detection range
         ↓
-Sound waves travel toward the object
+Infrared light reflects back to the receiver
         ↓
-Waves reflect back on hitting the object
+Sensor output pin goes LOW (object detected)
         ↓
-Echo pin receives the reflected signal
+Arduino reads the sensor signal
         ↓
-Arduino calculates travel time of the wave
+Arduino triggers LED ON as output indicator
         ↓
-Distance = (Time × Speed of Sound) / 2
-        ↓
-Real-time distance displayed on Serial Monitor
+Object removed → IR signal lost → LED OFF
 ```
 
-### Distance Formula
+### Detection Logic
 
-```
-Distance (cm) = (Duration × 0.034) / 2
-```
-
-Where `Duration` is the time (in microseconds) between the Trig pulse and Echo response.
+| Sensor Output | Meaning | LED State |
+|---------------|---------|-----------|
+| LOW | Object detected | ON |
+| HIGH | No object | OFF |
 
 ---
 
 ## 🔌 Circuit Connections
 
-| HC-SR04 Pin | Arduino Pin |
-|-------------|-------------|
+| IR Sensor Pin | Arduino Pin |
+|---------------|-------------|
 | VCC | 5V |
 | GND | GND |
-| Trig | Digital Pin 9 |
-| Echo | Digital Pin 10 |
+| OUT | Digital Pin 2 |
 
----
+| LED | Arduino Pin |
+|-----|-------------|
+| Anode (+) via 220Ω resistor | Digital Pin 13 |
+| Cathode (−) | GND |
+
 
 ## 🚀 Applications
 
-- **Obstacle Detection Robots** — autonomous navigation and collision avoidance
-- **Parking Assistance Systems** — vehicle proximity alerts
-- **Security Monitoring** — motion and intrusion detection
-- **Industrial Automation** — conveyor belt object sensing
-- **Distance Measuring Devices** — portable measurement tools
+- **Obstacle Avoidance Robots** — detect and avoid objects in path
+- **Security Systems** — detect presence of intruders
+- **Automated Counters** — count objects passing a point
+- **Industrial Automation** — detect parts on conveyor belts
+- **Smart Home Systems** — proximity-based lighting or alerts
 
 ---
 
 ## ✅ Results
 
-The system successfully measures object distance in real time and displays it continuously on the Serial Monitor. The HC-SR04 sensor provides reliable readings in the range of **2 cm to 400 cm** with approximately **3mm accuracy**.
+The system successfully detects objects such as hands and physical obstacles in real time. Upon detection, the LED turns ON immediately and turns OFF when the object is removed — demonstrating reliable threshold-based signal detection with minimal latency.
 
 ---
 
 ## 📚 Key Concepts Demonstrated
 
-- Ultrasonic sensing and signal processing
-- Embedded C programming on Arduino
-- Sensor interfacing (Trig/Echo pin protocol)
-- Real-time data acquisition and serial communication
-- Threshold detection and output triggering
+- IR sensor interfacing with Arduino Uno
+- Digital signal reading and threshold detection
+- Real-time output triggering (LED)
+- Embedded C programming
+- Test bench setup and edge-case validation
+- Serial Monitor debugging
 
 ---
 
